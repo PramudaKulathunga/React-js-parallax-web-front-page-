@@ -1,0 +1,514 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:wght@100;300;400;800&dispay=swap");
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #333;
+}
+
+.logo {
+    padding-top: 10px;
+    width: 150px;
+}
+
+header {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    padding: 0.9rem 0;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    align-items: center;
+}
+
+header nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.header2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+header ul a {
+    text-decoration: none;
+    color: #fff;
+    padding: 0 1.5rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.83rem;
+}
+
+header ul a:hover {
+    font-weight: 600;
+}
+
+.search a {
+    font-size: 1.05rem;
+    padding: 0 3rem;
+}
+
+.hamburger {
+    width: 37px;
+    height: 37px;
+    display: flex;
+    border-radius: 50%;
+    background-color: rgba(41, 37, 37, 0.7);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bar {
+    position: relative;
+    width: 52%;
+    height: 1.3px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: 0.5s;
+    align-items: center;
+}
+
+.bar::before,
+.bar::after {
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: #fff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: 0.5s;
+    left: 4px;
+}
+
+.bar:before {
+    transform: translateY(-5px);
+}
+
+.bar:after {
+    transform: translateY(5px);
+}
+
+.container {
+    transform-style: preserve-3d;
+    overflow-x: hidden;
+}
+
+.container.active .hamburger {
+    background-color: #fff;
+}
+
+.container.active .bar {
+    transform: rotate(360deg);
+    background-color: transparent;
+}
+
+.container.active .bar:before {
+    transform: translateY(0) rotate(45deg);
+    background-color: black;
+    width: 75%;
+    left: 2.5px;
+}
+
+.container.active .bar:after {
+    transform: translateY(0) rotate(-45deg);
+    background-color: black;
+    width: 75%;
+    left: 2.5px;
+}
+
+.container.active main {
+    animation: main-animation 0.5s ease;
+    cursor: pointer;
+    transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+}
+
+@keyframes main-animation {
+    from {
+        transform: translate(0);
+    }
+
+    to {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+}
+
+.links {
+    position: absolute;
+    width: 30%;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.links a {
+    text-decoration: none;
+    color: #cfcdcd;
+    padding: 0.7rem 0;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: hide 0.5s forwards ease;
+}
+
+.links a:hover {
+    color: #fff;
+    font-weight: 600;
+}
+
+.container.active .links a {
+    animation: appear 0.5s forwards ease var(--i);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.shadow {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: 0.5s;
+}
+
+.shadow.one {
+    z-index: -1;
+    opacity: 0.15;
+}
+
+.shadow.two {
+    z-index: -2;
+    opacity: 0.1;
+}
+
+.container.active .shadow.one {
+    animation: shadow-one 0.6s ease-out;
+    transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+}
+
+@keyframes shadow-one {
+    0% {
+        transform: translate(0);
+    }
+
+    5% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+
+    100% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+    }
+}
+
+.container.active .shadow.two {
+    animation: shadow-two 0.6s ease-out;
+    transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+}
+
+@keyframes shadow-two {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+    }
+
+    100% {
+        transform: perspective(1300px) rotateY(20deg) translateZ(120px) scale(0.5);
+    }
+}
+
+.container.active main:hover+.shadow.one {
+    transform: perspective(1300px) rotateY(20deg) translateZ(230px) scale(0.5);
+}
+
+.container.active main:hover {
+    transform: perspective(1300px) rotateY(20deg) translateZ(350px) scale(0.5);
+}
+
+.container.active .face {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    background-image: url("img/optimus face.png");
+    background-size: cover;
+    background-position: center;
+    animation: sb 1.5s ease-out;
+}
+
+@keyframes sb {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translateX(0px);
+    }
+}
+
+main {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    z-index: 5;
+}
+
+.parallax {
+    pointer-events: none;
+    transition: 0.4s cubic-bezier(0.2, 0.49, 0.32, 0.99);
+}
+
+.bg-img {
+    position: absolute;
+    width: 133.33%;
+    height: 180.5%;
+    left: 50%;
+    z-index: 1;
+}
+
+.ultra-img {
+    position: absolute;
+    width: 34.67%;
+    left: 50%;
+    z-index: 2;
+}
+
+.bumble-img {
+    position: absolute;
+    width: 38.67%;
+    left: 88.67%;
+    z-index: 3;
+}
+
+.arcee-img {
+    position: absolute;
+    width: 32%;
+    left: 10.67%;
+    z-index: 4;
+}
+
+.arceeeye-img {
+    position: absolute;
+    width: 26.67%;
+    left: 18.67%;
+    opacity: 65%;
+    z-index: 5;
+}
+
+.ironhide-img {
+    position: absolute;
+    width: 16.67%;
+    left: 29.33%;
+    z-index: 6;
+}
+
+.firestar1-img {
+    position: absolute;
+    width: 16.67%;
+    left: 20%;
+    z-index: 7;
+}
+
+.firestar2-img {
+    position: absolute;
+    width: 16.67%;
+    left: 76.67%;
+    z-index: 8;
+}
+
+.transformers-img {
+    position: absolute;
+    width: 70%;
+    left: 50%;
+    z-index: 9;
+}
+
+.ship-img {
+    position: absolute;
+    width: 53.33%;
+    left: 20%;
+    z-index: 10;
+}
+
+.smokeL-img {
+    position: absolute;
+    width: 33.33%;
+    left: 8%;
+    z-index: 11;
+}
+
+.ratchet-img {
+    position: absolute;
+    width: 25.33%;
+    left: 6.67%;
+    z-index: 12;
+}
+
+.jetfire-img {
+    position: absolute;
+    width: 18.67%;
+    left: 71.33%;
+    z-index: 13;
+}
+
+.ship2-img {
+    position: absolute;
+    width: 60%;
+    left: 74%;
+    z-index: 14;
+}
+
+.fliers-img {
+    position: absolute;
+    width: 183.33%;
+    left: -13.33%;
+    opacity: 15%;
+    z-index: 15;
+}
+
+.jazz-img {
+    position: absolute;
+    width: 40%;
+    left: 93.33%;
+    z-index: 16;
+}
+
+.smokeR-img {
+    position: absolute;
+    width: 41.33%;
+    left: 86.67%;
+    z-index: 17;
+}
+
+.rock-img {
+    position: absolute;
+    width: 32%;
+    left: 87.4%;
+    z-index: 18;
+}
+
+.optimus-img {
+    position: absolute;
+    width: 26.67%;
+    left: 50%;
+    z-index: 19;
+}
+
+.vignette {
+    position: absolute;
+    z-index: 25;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+}
+
+@media (max-width:775px) {
+    header nav {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        width: 100;
+    }
+
+    header ul a {
+        font-size: 0.73rem;
+        padding: 0 0.9rem;
+    }
+
+    .search a {
+        font-size: 0.85rem;
+        padding: 0 1.8rem;
+    }
+
+    .hamburger {
+        padding-left: 0.9rem;
+    }
+
+    .hamburger {
+        height: 30px;
+        width: 30px;
+    }
+
+    .fliers-img {
+        width: 250%;
+    }
+
+    .links a {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+}
